@@ -8,16 +8,16 @@
     <h1 class="text-center p-5" style="color: rgb(173, 183, 199);">Sign In</h1>
     
     <div class="p-2 mt-2">
-    <input (change)="acnoChange($event)" id="ul" name="uname" [placeholder]="pdata"
+    <input [(ngModel)]="acno" id="ul" name="uname" [placeholder]="pdata"
     style="border: none;" class="form-control mt-2 p-2" type="text">
     </div>
     
     <div class="p-2 mt-2">
-        <input #psw  id="pl" name="password"
+        <input [(ngModel)]="psw"  id="pl" name="password"
          class="form-control mt-2 p-2" placeholder="enter password">
         </div>
        
-        <button (click)="login(psw)" type="submit " class="btn btn-outline-info mt-4 p-2">login</button>
+        <button (click)="login()" type="submit " class="btn btn-outline-info mt-4 p-2">login</button>
         <p class="mt-2" style="color: rgb(212, 208, 203);">
             dont have account?
             <a style="color: white; text-decoration: none;" href="register"> 

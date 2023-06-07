@@ -8,44 +8,48 @@ import { DataService } from '../data.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
- data="happy banking with us"
- pdata="enter acno"
+  data = "happy banking with us"
+  pdata = "enter acno"
   serviceData: any;
 
-//  constructor(private rout:Router){ }
+  acno: any
+  psw: any
 
-//  ngOnInit(): void {
+  //  constructor(private rout:Router){ }
 
-//  }
-//  login(a:any){
-//   console.log(a.value);
+  //  ngOnInit(): void {
 
-//   alert('login clicked')
-//   this.rout.navigateByUrl('home')
-//  }
-// acnoChange(event:any){
-//   console.log(event.target.value);
-  
+  //  }
+  //  login(a:any){
+  //   console.log(a.value);
 
-// }
+  //   alert('login clicked')
+  //   this.rout.navigateByUrl('home')
+  //  }
+  // acnoChange(event:any){
+  //   console.log(event.target.value);
 
-constructor(private rout:Router,private ds:DataService){ }
 
-ngOnInit(): void{
-  this.serviceData=this.ds.sdata
-  console.log(this.serviceData);
-  this.ds.smethod()
-  
+  // }
 
-}
-login(a:any){
-  console.log(a.value);
+  constructor(private rout: Router, private ds: DataService) { }
 
-  alert('login clicked')
-  this.rout.navigateByUrl('home')
-}
-acnoChange(event:any){
-  console.log(event.target.value);
-  
-}
+  ngOnInit(): void {
+
+
+  }
+  login() {
+    var acno = this.acno
+    var psw = this.psw
+    this.ds.login(acno, psw).subscribe((result: any) => {
+      alert(result.message)
+      this.rout.navigateByUrl('home')
+    },
+      result => {
+        alert(result.error.message)
+      }
+    )
+
+
+  }
 }

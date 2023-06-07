@@ -1,30 +1,45 @@
 <div class="">
     <div class="text-center row">
     <div class="col-6 mb-5">
-        <form id="d" style="background-color: rgb(64, 69, 160); margin-top: 50px; margin-bottom: 100px; border-radius: 20px;"
+        <form  [formGroup]="registerForm" id="d" style="background-color: rgb(64, 69, 160); margin-top: 50px; margin-bottom: 100px; border-radius: 20px;"
          action="" class="p-3 container w-75 text-center border">
     <h1 class="text-center p-5" style="color: rgb(173, 183, 199);">Sign-up</h1>
     
     <div class="p-2 mt-2">
-    <input [(ngModel)]="acno" id="ul" name="uname" placeholder="acno"
+    <input formControlName="acno" id="ul" name="acno" placeholder="acno"
     style="border: none;" class="form-control mt-2 p-2" type="text">
     </div>
+<div *ngIf="(this.registerForm.get('acno')?.errors) && (this.registerForm.get('acno')?.touched)">
+<p class="text-danger">must contain number only</p>
+</div>
+
     <div class="p-2 mt-2">
-        <input [(ngModel)]="uname" id="u2" name="uname" placeholder="username"
+        <input formControlName="uname" id="u2" name="uname" placeholder="username"
         style="border: none;" class="form-control mt-2 p-2" type="text">
         </div>
-    
+        <div *ngIf="(this.registerForm.get('uname')?.errors) && (this.registerForm.get('uname')?.touched)">
+            <p class="text-danger">must contain character only</p>
+            </div>
+            
     
     <div class="p-2 mt-2">
-        <input [(ngModel)]="psw"  id="pl" name="password"
+        <input formControlName="psw"  id="pl" name="password"
          class="form-control mt-2 p-2" placeholder="enter password">
         </div>
+        <div *ngIf="(this.registerForm.get('psw')?.errors) && (this.registerForm.get('psw')?.touched)">
+            <p class="text-danger">must contain numbers character only</p>
+            </div>
+
+
 
         <div class="p-2 mt-2">
-            <input [(ngModel)]="cpsw" id="p2" name="password"
+            <input formControlName="cpsw" id="p2" name="cpassword"
              class="form-control mt-2 p-2" placeholder="confirm password">
             </div>
-    
+
+<div *ngIf="pswCheck">
+<h5 class="text-danger">password doesnt match</h5>
+</div>    
        
         <button (click)="signup()" type="submit " class="btn btn-outline-info mt-4 p-2 text-center">sign-up</button>
         
